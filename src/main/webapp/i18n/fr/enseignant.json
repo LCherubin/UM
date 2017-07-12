@@ -1,0 +1,31 @@
+{
+    "mathFinEcoUniversityApp": {
+        "enseignant" : {
+            "home": {
+                "title": "Enseignants",
+                "createLabel": "Créer un nouveau Enseignant",
+                "createOrEditLabel": "Créer ou éditer un Enseignant",
+                "search": "Recherche pour Enseignant"
+            },
+            "created": "Un nouveau Enseignant a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Enseignant avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Enseignant avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Enseignant {{ id }} ?"
+            },
+            "detail": {
+                "title": "Enseignant"
+            },
+            "prenoms": "Prenoms",
+            "nom": "Nom",
+            "sexe": "Sexe",
+            "dateNaissance": "Date Naissance",
+            "lieuNaisance": "Lieu Naisance",
+            "titre": "Titre",
+            "dateEnregistrement": "Date Enregistrement",
+            "contact": "Contact",
+            "cours": "Cours",
+            "annees": "Annees"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+
+<div *ngIf="parent">
+    <h2><span jhiTranslate="mathFinEcoUniversityApp.parent.detail.title">Parent</span> {{parent.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.parent.prenoms">Prenoms</span></dt>
+        <dd>
+            <span>{{parent.prenoms}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.parent.nom">Nom</span></dt>
+        <dd>
+            <span>{{parent.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.parent.sexe">Sexe</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mathFinEcoUniversityApp.Sexe.' + parent.sexe}}">{{parent.sexe}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.parent.lien">Lien</span></dt>
+        <dd>
+            <span>{{parent.lien}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.parent.contact">Contact</span></dt>
+        <dd>
+            <div *ngIf="parent.contact">
+                <a [routerLink]="['/contact', parent.contact?.id]">{{parent.contact?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'parent/'+ parent.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

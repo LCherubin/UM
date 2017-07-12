@@ -1,0 +1,78 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myParentLabel" jhiTranslate="mathFinEcoUniversityApp.parent.home.createOrEditLabel">Create or edit a Parent</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!parent.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="parent.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.parent.prenoms" for="field_prenoms">Prenoms</label>
+            <input type="text" class="form-control" name="prenoms" id="field_prenoms"
+                [(ngModel)]="parent.prenoms" required />
+            <div [hidden]="!(editForm.controls.prenoms?.dirty && editForm.controls.prenoms?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenoms?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.parent.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="parent.nom" required />
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.parent.sexe" for="field_sexe">Sexe</label>
+            <select class="form-control" name="sexe" [(ngModel)]="parent.sexe" id="field_sexe"  required>
+                <option value="MASCULIN" jhiTranslate="mathFinEcoUniversityApp.Sexe.MASCULIN">MASCULIN</option>
+                <option value="FEMININ" jhiTranslate="mathFinEcoUniversityApp.Sexe.FEMININ">FEMININ</option>
+            </select>
+            <div [hidden]="!(editForm.controls.sexe?.dirty && editForm.controls.sexe?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.sexe?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.parent.lien" for="field_lien">Lien</label>
+            <input type="text" class="form-control" name="lien" id="field_lien"
+                [(ngModel)]="parent.lien" required />
+            <div [hidden]="!(editForm.controls.lien?.dirty && editForm.controls.lien?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lien?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="mathFinEcoUniversityApp.parent.contact" for="field_contact">Contact</label>
+            <select class="form-control" id="field_contact" name="contact" [(ngModel)]="parent.contact">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contactOption.id === parent.contact?.id ? parent.contact : contactOption" *ngFor="let contactOption of contacts; trackBy: trackContactById">{{contactOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

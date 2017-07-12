@@ -1,0 +1,19 @@
+version: '2'
+services:
+    mathfineco_university-app:
+        image: mathfineco_university
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mathfineco_university-mysql:3306/mathfineco_university?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=mathfineco_university-elasticsearch:9300
+        ports:
+            - 8080:8080
+    mathfineco_university-mysql:
+        extends:
+            file: mysql.yml
+            service: mathfineco_university-mysql
+    mathfineco_university-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: mathfineco_university-elasticsearch

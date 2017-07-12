@@ -1,0 +1,37 @@
+
+<div *ngIf="anneeUniversitaire">
+    <h2><span jhiTranslate="mathFinEcoUniversityApp.anneeUniversitaire.detail.title">Annee Universitaire</span> {{anneeUniversitaire.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.anneeUniversitaire.annees">Annees</span></dt>
+        <dd>
+            <span>{{anneeUniversitaire.annees}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.anneeUniversitaire.etudiant">Etudiant</span></dt>
+        <dd>
+            <div *ngIf="anneeUniversitaire.etudiant">
+                <a [routerLink]="['/etudiant', anneeUniversitaire.etudiant?.id]">{{anneeUniversitaire.etudiant?.id}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.anneeUniversitaire.enseignant">Enseignant</span></dt>
+        <dd>
+            <div *ngIf="anneeUniversitaire.enseignant">
+                <a [routerLink]="['/enseignant', anneeUniversitaire.enseignant?.id]">{{anneeUniversitaire.enseignant?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'annee-universitaire/'+ anneeUniversitaire.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

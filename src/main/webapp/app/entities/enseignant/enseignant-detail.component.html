@@ -1,0 +1,55 @@
+
+<div *ngIf="enseignant">
+    <h2><span jhiTranslate="mathFinEcoUniversityApp.enseignant.detail.title">Enseignant</span> {{enseignant.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.prenoms">Prenoms</span></dt>
+        <dd>
+            <span>{{enseignant.prenoms}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.nom">Nom</span></dt>
+        <dd>
+            <span>{{enseignant.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.sexe">Sexe</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mathFinEcoUniversityApp.Sexe.' + enseignant.sexe}}">{{enseignant.sexe}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.dateNaissance">Date Naissance</span></dt>
+        <dd>
+            <span>{{enseignant.dateNaissance | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.lieuNaisance">Lieu Naisance</span></dt>
+        <dd>
+            <span>{{enseignant.lieuNaisance}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.titre">Titre</span></dt>
+        <dd>
+            <span>{{enseignant.titre}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.dateEnregistrement">Date Enregistrement</span></dt>
+        <dd>
+            <span>{{enseignant.dateEnregistrement | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.enseignant.contact">Contact</span></dt>
+        <dd>
+            <div *ngIf="enseignant.contact">
+                <a [routerLink]="['/contact', enseignant.contact?.id]">{{enseignant.contact?.telephone}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'enseignant/'+ enseignant.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

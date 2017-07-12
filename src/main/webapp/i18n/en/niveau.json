@@ -1,0 +1,10 @@
+{
+    "mathFinEcoUniversityApp": {
+        "Niveau" : {
+            "null": "",
+            "PREPA": "PREPA",
+            "LICENCE": "LICENCE",
+            "MASTER": "MASTER"
+        }
+    }
+}

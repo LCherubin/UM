@@ -1,0 +1,83 @@
+
+<div *ngIf="etudiant">
+    <h2><span jhiTranslate="mathFinEcoUniversityApp.etudiant.detail.title">Etudiant</span> {{etudiant.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.matricule">Matricule</span></dt>
+        <dd>
+            <span>{{etudiant.matricule}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.prenoms">Prenoms</span></dt>
+        <dd>
+            <span>{{etudiant.prenoms}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.nom">Nom</span></dt>
+        <dd>
+            <span>{{etudiant.nom}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.sexe">Sexe</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mathFinEcoUniversityApp.Sexe.' + etudiant.sexe}}">{{etudiant.sexe}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.dateNaissance">Date Naissance</span></dt>
+        <dd>
+            <span>{{etudiant.dateNaissance | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.lieuNaisance">Lieu Naisance</span></dt>
+        <dd>
+            <span>{{etudiant.lieuNaisance}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.promotion">Promotion</span></dt>
+        <dd>
+            <span>{{etudiant.promotion}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.niveau">Niveau</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mathFinEcoUniversityApp.Niveau.' + etudiant.niveau}}">{{etudiant.niveau}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.dateInscription">Date Inscription</span></dt>
+        <dd>
+            <span>{{etudiant.dateInscription | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.statut">Statut</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mathFinEcoUniversityApp.Statut.' + etudiant.statut}}">{{etudiant.statut}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.statutInscription">Statut Inscription</span></dt>
+        <dd>
+            <span jhiTranslate="{{'mathFinEcoUniversityApp.StatInscription.' + etudiant.statutInscription}}">{{etudiant.statutInscription}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.contact">Contact</span></dt>
+        <dd>
+            <div *ngIf="etudiant.contact">
+                <a [routerLink]="['/contact', etudiant.contact?.id]">{{etudiant.contact?.telephone}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.filier">Filier</span></dt>
+        <dd>
+            <div *ngIf="etudiant.filier">
+                <a [routerLink]="['/filiere', etudiant.filier?.id]">{{etudiant.filier?.code}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.etudiant.parent">Parent</span></dt>
+        <dd>
+            <div *ngIf="etudiant.parent">
+                <a [routerLink]="['/parent', etudiant.parent?.id]">{{etudiant.parent?.id}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'etudiant/'+ etudiant.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

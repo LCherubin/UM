@@ -1,0 +1,24 @@
+{
+    "mathFinEcoUniversityApp": {
+        "anneeUniversitaire" : {
+            "home": {
+                "title": "AnneeUniversitaires",
+                "createLabel": "Créer un nouveau Annee Universitaire",
+                "createOrEditLabel": "Créer ou éditer un Annee Universitaire",
+                "search": "Recherche pour Annee Universitaire"
+            },
+            "created": "Un nouveau Annee Universitaire a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Annee Universitaire avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Annee Universitaire avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Annee Universitaire {{ id }} ?"
+            },
+            "detail": {
+                "title": "Annee Universitaire"
+            },
+            "annees": "Annees",
+            "etudiant": "Etudiant",
+            "enseignant": "Enseignant"
+        }
+    }
+}

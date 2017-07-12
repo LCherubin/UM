@@ -1,0 +1,19 @@
+{
+    "mathFinEcoUniversityApp": {
+        "Niveau" : {
+            "null": "",
+            "PREPA": "PREPA",
+            "LICENCE": "LICENCE",
+            "MASTER": "MASTER",
+            "PREPA1": "PREPA 1",
+            "PREPA2": "PREPA 2",
+            "LICENCE1": "LICENCE 1",
+            "LICENCE2":"LICENCE 2",
+            "LICENCE3" :"LICENCE 3",
+            "MASTER1" : "MASTER 1",
+            "MASTER2" : "MASTER 2",
+            "ECAM1": "ING ECAM-EPMI 1",
+            "ECAM2": "ING ECAM-EPMI 2"
+        }
+    }
+}

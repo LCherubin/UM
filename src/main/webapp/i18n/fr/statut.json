@@ -1,0 +1,10 @@
+{
+    "mathFinEcoUniversityApp": {
+        "Statut" : {
+            "null": "",
+            "SPONSORING": "SPONSORING",
+            "DEMI_BOURSIER": "DEMI_BOURSIER",
+            "BOURSIER": "BOURSIER"
+        }
+    }
+}

@@ -1,0 +1,119 @@
+
+ entity Country{
+  iso String required
+  name String required
+  nicename String required
+  iso3 String required
+  numcode Long required
+  phonecode Long required
+
+ }
+entity Contribution{
+	 niveau Niveau required
+     fraisInsciprion Double
+     montantTotal Double
+     montantTranche_1 Double
+     montantTranche_2 Double
+     montantPayer_1 Double
+     montantPayer_2 Double
+     totalPayer Double
+     datePayment LocalDate
+}
+entity AnneeUniversitaire{
+	annees String required
+}
+enum Niveau{
+	PREPA, LICENCE, MASTER
+}
+entity Contact {
+    ville String required
+    codePostal String
+	telephone String required
+    email String required
+}
+
+entity Etudiant {
+	matricule Long required
+	prenoms String required
+    nom String required
+    sexe Sexe required
+    dateNaissance LocalDate required
+    lieuNaisance String required
+    promotion String required
+    niveau Niveau
+    dateInscription LocalDate
+    statut Statut
+    statutInscription StatInscription
+}
+
+entity Enseignant {
+	prenoms String required
+    nom String required
+    sexe Sexe required
+    dateNaissance LocalDate required
+    lieuNaisance String required
+    titre String
+    dateEnregistrement LocalDate
+
+}
+
+entity Parent {
+	prenoms String required
+    nom String required
+    sexe Sexe required
+    lien String required
+}
+entity Filiere {
+	code String required
+	intitule String required
+}
+
+entity Cours {
+	codeUE String required
+	intituleUE String required
+    semestre String required
+    duree String required
+}
+
+enum StatInscription {
+   PREINSCRIPTION, EN_COURS, VALIDE
+}
+
+enum Statut {
+    SPONSORING, DEMI_BOURSIER, BOURSIER
+}
+
+enum Sexe {
+    MASCULIN, FEMININ
+}
+
+// defining multiple OneToMany relationships with comments
+
+
+relationship OneToMany {
+	 Parent {parent(nom)} to Etudiant,
+     Filiere {filiere(code)} to Etudiant,
+     Enseignant {cours} to Cours ,
+     Etudiant  {annees} to AnneeUniversitaire,
+     Enseignant {annees} to AnneeUniversitaire,
+     Etudiant {contribution(niveau)} to Contribution,
+     Filiere {cours} to Cours
+    }
+
+// defining multiple oneToOne relationships
+relationship OneToOne {
+	Contact {country(name)} to Country ,
+    Parent {contact} to Contact ,
+    Etudiant {contact(telephone)} to Contact ,
+    Enseignant {contact(telephone)} to Contact ,
+    Etudiant {filier(code)} to Filiere ,
+    Contribution {annees(annees)} to AnneeUniversitaire
+    }
+
+
+// Set pagination options
+paginate all with pager
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix

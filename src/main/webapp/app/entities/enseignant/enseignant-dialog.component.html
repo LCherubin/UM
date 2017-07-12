@@ -1,0 +1,109 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myEnseignantLabel" jhiTranslate="mathFinEcoUniversityApp.enseignant.home.createOrEditLabel">Create or edit a Enseignant</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!enseignant.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="enseignant.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.enseignant.prenoms" for="field_prenoms">Prenoms</label>
+            <input type="text" class="form-control" name="prenoms" id="field_prenoms"
+                [(ngModel)]="enseignant.prenoms" required />
+            <div [hidden]="!(editForm.controls.prenoms?.dirty && editForm.controls.prenoms?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.prenoms?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.enseignant.nom" for="field_nom">Nom</label>
+            <input type="text" class="form-control" name="nom" id="field_nom"
+                [(ngModel)]="enseignant.nom" required />
+            <div [hidden]="!(editForm.controls.nom?.dirty && editForm.controls.nom?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.nom?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.enseignant.sexe" for="field_sexe">Sexe</label>
+            <select class="form-control" name="sexe" [(ngModel)]="enseignant.sexe" id="field_sexe"  required>
+                <option value="MASCULIN" jhiTranslate="mathFinEcoUniversityApp.Sexe.MASCULIN">MASCULIN</option>
+                <option value="FEMININ" jhiTranslate="mathFinEcoUniversityApp.Sexe.FEMININ">FEMININ</option>
+            </select>
+            <div [hidden]="!(editForm.controls.sexe?.dirty && editForm.controls.sexe?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.sexe?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.enseignant.dateNaissance" for="field_dateNaissance">Date Naissance</label>
+            <div class="input-group">
+                <input id="field_dateNaissance" type="text" class="form-control" name="dateNaissance" ngbDatepicker  #dateNaissanceDp="ngbDatepicker" [(ngModel)]="enseignant.dateNaissance"
+                required/>
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateNaissanceDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <div [hidden]="!(editForm.controls.dateNaissance?.dirty && editForm.controls.dateNaissance?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.dateNaissance?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.enseignant.lieuNaisance" for="field_lieuNaisance">Lieu Naisance</label>
+            <input type="text" class="form-control" name="lieuNaisance" id="field_lieuNaisance"
+                [(ngModel)]="enseignant.lieuNaisance" required />
+            <div [hidden]="!(editForm.controls.lieuNaisance?.dirty && editForm.controls.lieuNaisance?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lieuNaisance?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.enseignant.titre" for="field_titre">Titre</label>
+            <input type="text" class="form-control" name="titre" id="field_titre"
+                [(ngModel)]="enseignant.titre"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.enseignant.dateEnregistrement" for="field_dateEnregistrement">Date Enregistrement</label>
+            <div class="input-group">
+                <input id="field_dateEnregistrement" type="text" class="form-control" name="dateEnregistrement" ngbDatepicker  #dateEnregistrementDp="ngbDatepicker" [(ngModel)]="enseignant.dateEnregistrement"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="dateEnregistrementDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="mathFinEcoUniversityApp.enseignant.contact" for="field_contact">Contact</label>
+            <select class="form-control" id="field_contact" name="contact" [(ngModel)]="enseignant.contact">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="contactOption.id === enseignant.contact?.id ? enseignant.contact : contactOption" *ngFor="let contactOption of contacts; trackBy: trackContactById">{{contactOption.telephone}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

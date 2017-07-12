@@ -1,0 +1,115 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "contact",
+            "otherEntityName": "contact",
+            "otherEntityField": "telephone",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "filier",
+            "otherEntityName": "filiere",
+            "otherEntityField": "code",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "annees",
+            "otherEntityName": "anneeUniversitaire",
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "contribution",
+            "otherEntityName": "contribution",
+            "otherEntityRelationshipName": "etudiant"
+        },
+        {
+            "relationshipName": "parent",
+            "otherEntityName": "parent",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "matricule",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "prenoms",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sexe",
+            "fieldType": "Sexe",
+            "fieldValues": "MASCULIN,FEMININ",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateNaissance",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lieuNaisance",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "promotion",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "niveau",
+            "fieldType": "Niveau",
+            "fieldValues": "PREPA,LICENCE,MASTER"
+        },
+        {
+            "fieldName": "dateInscription",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "statut",
+            "fieldType": "Statut",
+            "fieldValues": "SPONSORING,DEMI_BOURSIER,BOURSIER"
+        },
+        {
+            "fieldName": "statutInscription",
+            "fieldType": "StatInscription",
+            "fieldValues": "PREINSCRIPTION,EN_COURS,VALIDE"
+        }
+    ],
+    "changelogDate": "20170704093553",
+    "entityTableName": "etudiant",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

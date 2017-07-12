@@ -1,0 +1,45 @@
+
+<div *ngIf="country">
+    <h2><span jhiTranslate="mathFinEcoUniversityApp.country.detail.title">Country</span> {{country.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.country.iso">Iso</span></dt>
+        <dd>
+            <span>{{country.iso}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.country.name">Name</span></dt>
+        <dd>
+            <span>{{country.name}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.country.nicename">Nicename</span></dt>
+        <dd>
+            <span>{{country.nicename}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.country.iso3">Iso 3</span></dt>
+        <dd>
+            <span>{{country.iso3}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.country.numcode">Numcode</span></dt>
+        <dd>
+            <span>{{country.numcode}}</span>
+        </dd>
+        <dt><span jhiTranslate="mathFinEcoUniversityApp.country.phonecode">Phonecode</span></dt>
+        <dd>
+            <span>{{country.phonecode}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'country/'+ country.id + '/edit'} }]"
+            replaceUrl="true"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

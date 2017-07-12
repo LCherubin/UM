@@ -1,0 +1,66 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "annees",
+            "otherEntityName": "anneeUniversitaire",
+            "otherEntityField": "annees",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "contribution"
+        },
+        {
+            "relationshipName": "etudiant",
+            "otherEntityName": "etudiant",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "niveau",
+            "fieldType": "Niveau",
+            "fieldValues": "PREPA,LICENCE,MASTER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fraisInsciprion",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "montantTotal",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "montantTranche1",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "montantTranche2",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "montantPayer1",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "montantPayer2",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "totalPayer",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "datePayment",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170704093550",
+    "entityTableName": "contribution",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

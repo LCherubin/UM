@@ -1,0 +1,27 @@
+{
+    "mathFinEcoUniversityApp": {
+        "country" : {
+            "home": {
+                "title": "Countries",
+                "createLabel": "Créer un nouveau Country",
+                "createOrEditLabel": "Créer ou éditer un Country",
+                "search": "Recherche pour Country"
+            },
+            "created": "Un nouveau Country a été créé avec l'identifiant {{ param }}",
+            "updated": "Le Country avec l'identifiant {{ param }} a été mis à jour",
+            "deleted": "Le Country avec l'identifiant {{ param }} a été supprimé",
+            "delete": {
+                "question": "Etes-vous certain de vouloir supprimer le Country {{ id }} ?"
+            },
+            "detail": {
+                "title": "Country"
+            },
+            "iso": "Iso",
+            "name": "Name",
+            "nicename": "Nicename",
+            "iso3": "Iso 3",
+            "numcode": "Numcode",
+            "phonecode": "Phonecode"
+        }
+    }
+}

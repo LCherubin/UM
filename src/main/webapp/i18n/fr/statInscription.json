@@ -1,0 +1,10 @@
+{
+    "mathFinEcoUniversityApp": {
+        "StatInscription" : {
+            "null": "",
+            "PREINSCRIPTION": "PREINSCRIPTION",
+            "EN_COURS": "EN_COURS",
+            "VALIDE": "VALIDE"
+        }
+    }
+}

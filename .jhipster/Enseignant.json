@@ -1,0 +1,76 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "contact",
+            "otherEntityName": "contact",
+            "otherEntityField": "telephone",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "enseignant"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "cours",
+            "otherEntityName": "cours",
+            "otherEntityRelationshipName": "enseignant"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "annees",
+            "otherEntityName": "anneeUniversitaire",
+            "otherEntityRelationshipName": "enseignant"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "prenoms",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "nom",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "sexe",
+            "fieldType": "Sexe",
+            "fieldValues": "MASCULIN,FEMININ",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dateNaissance",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lieuNaisance",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "titre",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateEnregistrement",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "changelogDate": "20170704093554",
+    "entityTableName": "enseignant",
+    "dto": "no",
+    "pagination": "pager",
+    "service": "serviceImpl"
+}

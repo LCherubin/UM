@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <!--
+        Added the constraints for entity Contribution.
+    -->
+    <changeSet id="20170704093550-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="annees_id"
+                                 baseTableName="contribution"
+                                 constraintName="fk_contribution_annees_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="annee_universitaire"/>
+
+        <addForeignKeyConstraint baseColumnNames="etudiant_id"
+                                 baseTableName="contribution"
+                                 constraintName="fk_contribution_etudiant_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="etudiant"/>
+
+    </changeSet>
+</databaseChangeLog>

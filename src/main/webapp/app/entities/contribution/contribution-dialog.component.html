@@ -1,0 +1,98 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myContributionLabel" jhiTranslate="mathFinEcoUniversityApp.contribution.home.createOrEditLabel">Create or edit a Contribution</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!contribution.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="contribution.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.niveau" for="field_niveau">Niveau</label>
+            <select class="form-control" name="niveau" [(ngModel)]="contribution.niveau" id="field_niveau"  required>
+                <option value="PREPA" jhiTranslate="mathFinEcoUniversityApp.Niveau.PREPA">PREPA</option>
+                <option value="LICENCE" jhiTranslate="mathFinEcoUniversityApp.Niveau.LICENCE">LICENCE</option>
+                <option value="MASTER" jhiTranslate="mathFinEcoUniversityApp.Niveau.MASTER">MASTER</option>
+            </select>
+            <div [hidden]="!(editForm.controls.niveau?.dirty && editForm.controls.niveau?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.niveau?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.fraisInsciprion" for="field_fraisInsciprion">Frais Insciprion</label>
+            <input type="number" class="form-control" name="fraisInsciprion" id="field_fraisInsciprion"
+                [(ngModel)]="contribution.fraisInsciprion"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.montantTotal" for="field_montantTotal">Montant Total</label>
+            <input type="number" class="form-control" name="montantTotal" id="field_montantTotal"
+                [(ngModel)]="contribution.montantTotal"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.montantTranche1" for="field_montantTranche1">Montant Tranche 1</label>
+            <input type="number" class="form-control" name="montantTranche1" id="field_montantTranche1"
+                [(ngModel)]="contribution.montantTranche1"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.montantTranche2" for="field_montantTranche2">Montant Tranche 2</label>
+            <input type="number" class="form-control" name="montantTranche2" id="field_montantTranche2"
+                [(ngModel)]="contribution.montantTranche2"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.montantPayer1" for="field_montantPayer1">Montant Payer 1</label>
+            <input type="number" class="form-control" name="montantPayer1" id="field_montantPayer1"
+                [(ngModel)]="contribution.montantPayer1"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.montantPayer2" for="field_montantPayer2">Montant Payer 2</label>
+            <input type="number" class="form-control" name="montantPayer2" id="field_montantPayer2"
+                [(ngModel)]="contribution.montantPayer2"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.totalPayer" for="field_totalPayer">Total Payer</label>
+            <input type="number" class="form-control" name="totalPayer" id="field_totalPayer"
+                [(ngModel)]="contribution.totalPayer"  />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.contribution.datePayment" for="field_datePayment">Date Payment</label>
+            <div class="input-group">
+                <input id="field_datePayment" type="text" class="form-control" name="datePayment" ngbDatepicker  #datePaymentDp="ngbDatepicker" [(ngModel)]="contribution.datePayment"
+                />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" (click)="datePaymentDp.toggle()"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="mathFinEcoUniversityApp.contribution.annees" for="field_annees">Annees</label>
+            <select class="form-control" id="field_annees" name="annees" [(ngModel)]="contribution.annees">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="anneeUniversitaireOption.id === contribution.annees?.id ? contribution.annees : anneeUniversitaireOption" *ngFor="let anneeUniversitaireOption of annees; trackBy: trackAnneeUniversitaireById">{{anneeUniversitaireOption.annees}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="mathFinEcoUniversityApp.contribution.etudiant" for="field_etudiant">Etudiant</label>
+            <select class="form-control" id="field_etudiant" name="etudiant" [(ngModel)]="contribution.etudiant" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="etudiantOption.id === contribution.etudiant?.id ? contribution.etudiant : etudiantOption" *ngFor="let etudiantOption of etudiants; trackBy: trackEtudiantById">{{etudiantOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

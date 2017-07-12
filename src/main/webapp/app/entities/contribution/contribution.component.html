@@ -1,0 +1,106 @@
+<div>
+    <h2>
+        <span jhiTranslate="mathFinEcoUniversityApp.contribution.home.title">Contributions</span>
+        <button class="btn btn-primary float-right create-contribution" [routerLink]="['/', { outlets: { popup: ['contribution-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span class="hidden-sm-down"  jhiTranslate="mathFinEcoUniversityApp.contribution.home.createLabel">
+            Create new Contribution
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+        <div class="col-sm-12">
+            <form name="searchForm" class="form-inline">
+                <div class="input-group w-100 mt-3">
+                    <input type="text" class="form-control" [(ngModel)]="currentSearch" id="currentSearch" name="currentSearch" placeholder="{{ 'mathFinEcoUniversityApp.contribution.home.search' | translate }}">
+                    <button class="input-group-addon btn btn-info" (click)="search(currentSearch)">
+                        <span class="fa fa-search"></span>
+                    </button>
+                    <button class="input-group-addon btn btn-danger" (click)="clear()" *ngIf="currentSearch">
+                        <span class="fa fa-trash-o"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="contributions">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="niveau"><span jhiTranslate="mathFinEcoUniversityApp.contribution.niveau">Niveau</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fraisInsciprion"><span jhiTranslate="mathFinEcoUniversityApp.contribution.fraisInsciprion">Frais Insciprion</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montantTotal"><span jhiTranslate="mathFinEcoUniversityApp.contribution.montantTotal">Montant Total</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montantTranche1"><span jhiTranslate="mathFinEcoUniversityApp.contribution.montantTranche1">Montant Tranche 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montantTranche2"><span jhiTranslate="mathFinEcoUniversityApp.contribution.montantTranche2">Montant Tranche 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montantPayer1"><span jhiTranslate="mathFinEcoUniversityApp.contribution.montantPayer1">Montant Payer 1</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="montantPayer2"><span jhiTranslate="mathFinEcoUniversityApp.contribution.montantPayer2">Montant Payer 2</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="totalPayer"><span jhiTranslate="mathFinEcoUniversityApp.contribution.totalPayer">Total Payer</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="datePayment"><span jhiTranslate="mathFinEcoUniversityApp.contribution.datePayment">Date Payment</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="annees.annees"><span jhiTranslate="mathFinEcoUniversityApp.contribution.annees">Annees</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="etudiant.id"><span jhiTranslate="mathFinEcoUniversityApp.contribution.etudiant">Etudiant</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let contribution of contributions ;trackBy: trackId">
+                <td><a [routerLink]="['../contribution', contribution.id ]">{{contribution.id}}</a></td>
+                <td jhiTranslate="{{'mathFinEcoUniversityApp.Niveau.' + contribution.niveau}}">{{contribution.niveau}}</td>
+                <td>{{contribution.fraisInsciprion}}</td>
+                <td>{{contribution.montantTotal}}</td>
+                <td>{{contribution.montantTranche1}}</td>
+                <td>{{contribution.montantTranche2}}</td>
+                <td>{{contribution.montantPayer1}}</td>
+                <td>{{contribution.montantPayer2}}</td>
+                <td>{{contribution.totalPayer}}</td>
+                <td>{{contribution.datePayment | date:'mediumDate'}}</td>
+                <td>
+                    <div *ngIf="contribution.annees">
+                        <a [routerLink]="['../annee-universitaire', contribution.annees?.id ]" >{{contribution.annees?.annees}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="contribution.etudiant">
+                        <a [routerLink]="['../etudiant', contribution.etudiant?.id ]" >{{contribution.etudiant?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../contribution', contribution.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contribution/'+ contribution.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'contribution/'+ contribution.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="hidden-md-down" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+        <!-- Pager is not implemented yet, so this is normal pagination instead -->
+        <div *ngIf="contributions && contributions.length">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="queryCount" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="page"  (pageChange)="loadPage(page)"></ngb-pagination>
+            </div>
+        </div>
+</div>

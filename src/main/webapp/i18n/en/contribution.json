@@ -1,0 +1,32 @@
+{
+    "mathFinEcoUniversityApp": {
+        "contribution" : {
+            "home": {
+                "title": "Contributions",
+                "createLabel": "Create a new Contribution",
+                "createOrEditLabel": "Create or edit a Contribution",
+                "search": "Search for Contribution"
+            },
+            "created": "A new Contribution is created with identifier {{ param }}",
+            "updated": "A Contribution is updated with identifier {{ param }}",
+            "deleted": "A Contribution is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Contribution {{ id }}?"
+            },
+            "detail": {
+                "title": "Contribution"
+            },
+            "niveau": "Niveau",
+            "fraisInsciprion": "Frais Insciprion",
+            "montantTotal": "Montant Total",
+            "montantTranche1": "Montant Tranche 1",
+            "montantTranche2": "Montant Tranche 2",
+            "montantPayer1": "Montant Payer 1",
+            "montantPayer2": "Montant Payer 2",
+            "totalPayer": "Total Payer",
+            "datePayment": "Date Payment",
+            "annees": "Annees",
+            "etudiant": "Etudiant"
+        }
+    }
+}

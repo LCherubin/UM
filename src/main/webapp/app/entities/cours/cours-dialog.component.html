@@ -1,0 +1,83 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myCoursLabel" jhiTranslate="mathFinEcoUniversityApp.cours.home.createOrEditLabel">Create or edit a Cours</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!cours.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="cours.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.cours.codeUE" for="field_codeUE">Code UE</label>
+            <input type="text" class="form-control" name="codeUE" id="field_codeUE"
+                [(ngModel)]="cours.codeUE" required />
+            <div [hidden]="!(editForm.controls.codeUE?.dirty && editForm.controls.codeUE?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.codeUE?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.cours.intituleUE" for="field_intituleUE">Intitule UE</label>
+            <input type="text" class="form-control" name="intituleUE" id="field_intituleUE"
+                [(ngModel)]="cours.intituleUE" required />
+            <div [hidden]="!(editForm.controls.intituleUE?.dirty && editForm.controls.intituleUE?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.intituleUE?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.cours.semestre" for="field_semestre">Semestre</label>
+            <input type="text" class="form-control" name="semestre" id="field_semestre"
+                [(ngModel)]="cours.semestre" required />
+            <div [hidden]="!(editForm.controls.semestre?.dirty && editForm.controls.semestre?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.semestre?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="mathFinEcoUniversityApp.cours.duree" for="field_duree">Duree</label>
+            <input type="text" class="form-control" name="duree" id="field_duree"
+                [(ngModel)]="cours.duree" required />
+            <div [hidden]="!(editForm.controls.duree?.dirty && editForm.controls.duree?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.duree?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label jhiTranslate="mathFinEcoUniversityApp.cours.enseignant" for="field_enseignant">Enseignant</label>
+            <select class="form-control" id="field_enseignant" name="enseignant" [(ngModel)]="cours.enseignant" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="enseignantOption.id === cours.enseignant?.id ? cours.enseignant : enseignantOption" *ngFor="let enseignantOption of enseignants; trackBy: trackEnseignantById">{{enseignantOption.id}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label jhiTranslate="mathFinEcoUniversityApp.cours.filiere" for="field_filiere">Filiere</label>
+            <select class="form-control" id="field_filiere" name="filiere" [(ngModel)]="cours.filiere" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="filiereOption.id === cours.filiere?.id ? cours.filiere : filiereOption" *ngFor="let filiereOption of filieres; trackBy: trackFiliereById">{{filiereOption.id}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
